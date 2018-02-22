@@ -25,7 +25,9 @@ public class Main extends PApplet{
 		a1.run(1, 1);
 		a2.run(1, (float)0.3);
 		a3.run(1, (float)0.5);
-		//delay(100);
+		rect(250,200, 150,150);
+		noFill();
+		delay(100);
 	}
 	    
 }

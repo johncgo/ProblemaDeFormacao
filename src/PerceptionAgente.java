@@ -22,6 +22,15 @@ public class PerceptionAgente {
 	public void setAcao(Acoes acao) {
 		this.acao = acao;
 	}
+
+	public PerceptionAgente(PApplet p, Vector2D posicao, Acoes acao) {
+		super();
+		this.p = p;
+		this.posicao = posicao;
+		this.acao = acao;
+	}
 	
-	
+	public PerceptionAgente copy(){
+		return new PerceptionAgente(p, posicao, acao);
+	}
 }
