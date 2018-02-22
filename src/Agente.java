@@ -13,8 +13,8 @@ public class Agente{
 	public Agente(PApplet p) {			
 		this.initialPointX = p.random(0,300);
 		this.initialPointY = p.random(0, 300);
-		this.widht = 10;
-		this.height = 10;
+		this.widht = 2;
+		this.height = 2;
 		pointX = initialPointX;
 		pointY = initialPointY;
 		this.p = p;
