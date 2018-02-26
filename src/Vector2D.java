@@ -16,6 +16,14 @@ public class Vector2D {
 		auxB = auxB * auxB;
 		return (float)Math.sqrt(auxA + auxB);
 	}
+	
+	public float distance(Vector2D pontoB){
+		float auxA = (x - pontoB.getX());
+		auxA = auxA * auxA;
+		float auxB = (y - pontoB.getY());
+		auxB = auxB * auxB;
+		return (float)Math.sqrt(auxA + auxB);
+	}
 
 	public float getX() {
 		return x;

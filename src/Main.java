@@ -7,13 +7,14 @@ public class Main extends PApplet{
 		PApplet.main("Main");
 	}	
 	
-	Agente a1, a2, a3;
+	Simulador simulador;
+	float squareX = 250;
+	float squareY = 200;
 	
 	public void settings(){
-		 size(700,500);
-		 a1 = new Agente(this);
-		 a2 = new Agente(this);
-		 a3 = new Agente(this);
+		 size(700,500);	
+		 simulador = new Simulador(this);
+		 simulador.agentInstantiate(50);
 	}
 	
 	public void setup(){
@@ -21,13 +22,10 @@ public class Main extends PApplet{
 	}
 	
 	public void draw(){
-		background(255);
-		a1.run(1, 1);
-		a2.run(1, (float)0.3);
-		a3.run(1, (float)0.5);
-		rect(250,200, 150,150);
-		noFill();
-		delay(100);
+		background(255);	
+		simulador.runAgents();
+		rect(squareX, squareY, 150,150);
+		noFill();		
 	}
 	    
 }
