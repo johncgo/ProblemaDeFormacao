@@ -11,10 +11,12 @@ public class Main extends PApplet{
 	float squareX = 250;
 	float squareY = 200;	
 	
+	int nrAgentes = 50;
+	
 	public void settings(){
 		 size(700,500);	
 		 simulador = new Simulador(this);
-		 simulador.agentInstantiate(50);
+		 simulador.agentInstantiate(nrAgentes);
 	}
 	
 	public void setup(){
@@ -23,9 +25,13 @@ public class Main extends PApplet{
 	
 	public void draw(){
 		background(255);			
-		rect(squareX, squareY, 150,150);
-		simulador.runAgents();
-		noFill();			
+		mousePose();
+		simulador.runAgents(squareX,squareY);
+		noFill();	
+		squareX = mouseX;
+		squareY = mouseY;
 	}	
-	    
+	public void mousePose(){
+		rect(mouseX, mouseY, 150,150);
+	}    
 }

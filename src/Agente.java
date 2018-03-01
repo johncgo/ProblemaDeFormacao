@@ -24,7 +24,7 @@ public class Agente{
 		this.state = State.SEARCHING;
 	}	
 	
-	public void run(){
+	public void run(float x, float y){
 		
 		if(number!=0){
 			switch (state){
@@ -38,7 +38,7 @@ public class Agente{
 				System.out.println("Estado inválido");
 			}
 		}else{
-			goToPoint(new PVector(250,200));
+			goToPoint(new PVector(x,y));
 		}
 	}
 	public boolean flag = true;

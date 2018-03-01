@@ -31,8 +31,8 @@ public class Simulador {
 		}
 	}
 	
-	public void runAgents(){
-		agentes.get(0).goToPoint(new PVector(250,200));
+	public void runAgents(float x, float y){
+		agentes.get(0).goToPoint(new PVector(x,y));
 		for(int i=1;i<agentes.size();i++){
 			//a.run(2, (float)0.5);
 			//a.goToPoint(new PVector(150,150));
