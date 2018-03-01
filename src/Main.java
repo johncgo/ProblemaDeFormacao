@@ -9,7 +9,7 @@ public class Main extends PApplet{
 	
 	Simulador simulador;
 	float squareX = 250;
-	float squareY = 200;
+	float squareY = 200;	
 	
 	public void settings(){
 		 size(700,500);	
@@ -18,14 +18,14 @@ public class Main extends PApplet{
 	}
 	
 	public void setup(){
-		fill(120,50,240);
+		//fill(120,50,240);
 	}
 	
 	public void draw(){
-		background(255);	
-		simulador.runAgents();
+		background(255);			
 		rect(squareX, squareY, 150,150);
-		noFill();		
-	}
+		simulador.runAgents();
+		noFill();			
+	}	
 	    
 }
