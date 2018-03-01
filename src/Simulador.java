@@ -35,11 +35,11 @@ public class Simulador {
 		for(int i=1;i<agentes.size();i++){
 			//a.run(2, (float)0.5);
 			//a.goToPoint(new Vector2D(150,150));
-			//agentes.get(i).goToPoint();
+			agentes.get(i).goToPoint();
 			//System.out.println(agentes.get(i).getNumber());
 			//System.out.println(agentes.get(i).getPosition().toString());
 			//agentes.get(i).tree();
-			agentes.get(i).run();
+			//agentes.get(i).run();
 		}
 	}
 	
