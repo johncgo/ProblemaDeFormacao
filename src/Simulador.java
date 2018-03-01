@@ -44,6 +44,7 @@ public class Simulador {
 	public void runAgents(PVector target){
 		for(Vehicle v:vehicles){
 			v.update();
+			v.separate(vehicles);
 			v.seek(target, 100);
 			v.display();
 		}
