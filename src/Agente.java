@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PVector;
 
 public class Agente{
 	
@@ -9,14 +10,14 @@ public class Agente{
 	
 	private State state;
 	private int number;
-	private Vector2D initialPosition;
-	private Vector2D position;
+	private PVector initialPosition;
+	private PVector position;
 	private float width = 2;
 	private float height = 2;
 	private float range = 2;
 	
 	public Agente(PApplet p, Simulador s) {			
-		this.initialPosition = new Vector2D(p.random(700), p.random(500));
+		this.initialPosition = new PVector(p.random(700), p.random(500));
 		this.position = initialPosition;		
 		this.p = p;
 		this.s = s;
@@ -37,11 +38,11 @@ public class Agente{
 				System.out.println("Estado inválido");
 			}
 		}else{
-			goToPoint(new Vector2D(250,200));
+			goToPoint(new PVector(250,200));
 		}
 	}
 	public boolean flag = true;
-	public Vector2D pt;
+	public PVector pt;
 	public void searching(){
 		
 		if(s.isNearZero(this)){
@@ -54,7 +55,7 @@ public class Agente{
 			//System.out.print("x: "+x);
 			float y = p.random(0,500);
 			//System.out.println("  y:"+y);
-			pt = new Vector2D(x, y);
+			pt = new PVector(x, y);
 			flag = false;			
 		}		
 		if(pointReached(pt)){
@@ -69,15 +70,15 @@ public class Agente{
 			state = State.SEARCHING;
 			return;
 		}
-		//p.ellipse(position.getX(),position.getY(),width+10,height+10);
-		Vector2D aux = s.getZeroPosition(this);
-		aux.setY(aux.getY()+10);
+		//p.ellipse(position.x,position.y,width+10,height+10);
+		PVector aux = s.getZeroPosition(this);
+		aux.y = aux.y+10;
 		goToPoint(aux);
 	}
 	
-	public boolean pointReached(Vector2D point){
-		if((position.getX() + range >= point.getX() || position.getX() - range >= point.getX())
-				&& (position.getY() + range >= point.getY() || position.getY() - range >= point.getY())){
+	public boolean pointReached(PVector point){
+		if((position.x + range >= point.x || position.x - range >= point.x)
+				&& (position.y + range >= point.y || position.x - range >= point.y)){
 			return true;
 		}
 		return false;
@@ -85,51 +86,51 @@ public class Agente{
 	
 	public void goToPoint(){
 		//p.tint(204, 102, 0);
-		p.ellipse(position.getX(),position.getY(),width,height);
+		p.ellipse(position.x,position.y,width,height);
 		if(number != 0){
 			if(s.isNearZero(this)){				
-				if(position.getX() > s.getZero().position.getX()){
-					position.setX(position.getX()-1);
-				}else if (position.getX() < s.getZero().position.getX()){
-					position.setX(position.getX()+1);
+				if(position.x > s.getZero().position.x){
+					position.x = position.x-1;
+				}else if (position.x < s.getZero().position.x){
+					position.x = position.x+1;
 				}
-				if(position.getY() > s.getZero().position.getY()){
-					position.setY(position.getY()-1);
-				}else if (position.getY() < s.getZero().position.getY()){
-					position.setY(position.getY()+1);
+				if(position.y > s.getZero().position.y){
+					position.y = position.y-1;
+				}else if (position.y < s.getZero().position.y){
+					position.y = position.y+1;
 				}		
 			}
 		}			
 	}
 	
-	public void goToPoint(Vector2D point){		
-		p.ellipse(position.getX(),position.getY(),width,height);
-		if(position.getX() > point.getX()){
-			position.setX(position.getX()-1);
-		}else if (position.getX() < point.getX()){
-			position.setX(position.getX()+1);
+	public void goToPoint(PVector point){		
+		p.ellipse(position.x,position.y,width,height);
+		if(position.x > point.x){
+			position.x = position.x-1;
+		}else if (position.x < point.x){
+			position.x = position.x+1;
 		}
-		if(position.getY() > point.getY()){
-			position.setY(position.getY()-1);
-		}else if (position.getY() < point.getY()){
-			position.setY(position.getY()+1);
+		if(position.y > point.y){
+			position.y = position.y-1;
+		}else if (position.y < point.y){
+			position.y = position.y+1;
 		}		
 	}
 
 	public void walk (String direction){
-		p.ellipse(position.getX(),position.getY(),width,height);
+		p.ellipse(position.x,position.y,width,height);
 		switch (direction){
 		case "right":
-			position.setX(position.getX()+1);
+			position.x = position.x++;
 			break;
 		case "left":
-			position.setX(position.getX()-1);
+			position.x = position.x++;
 			break;
 		case "up":
-			position.setY(position.getY()-1);
+			position.y = position.y--;
 			break;
 		case "down":
-			position.setY(position.getY()+1);
+			position.y = position.y++;
 			break;
 		default:
 			System.out.println("Entrada inválida");
@@ -137,18 +138,18 @@ public class Agente{
 	}
 	
 	public void tree(){
-		Vector2D screenLimit = new Vector2D(700,500);
-		Vector2D aux = new Vector2D(0,0);
+		PVector screenLimit = new PVector(700,500);
+		PVector aux = new PVector(0,0);
 		//boolean edgeReached = false;
 		String direction="right";
 		
 		while(position != screenLimit){
 			walk(direction);
-			if(position.getX() >= screenLimit.getX()){
+			if(position.x >= screenLimit.x){
 				direction = "down";
 				aux = position;
 			}
-			if(position.getY() >= aux.getX()+50){
+			if(position.y >= aux.x+50){
 				direction = "left";
 			}
 		}
@@ -163,11 +164,11 @@ public class Agente{
 		this.number = number;
 	}
 
-	public Vector2D getPosition() {
+	public PVector getPosition() {
 		return position;
 	}
 
-	public void setPosition(Vector2D position) {
+	public void setPosition(PVector position) {
 		this.position = position;
 	}
 	
