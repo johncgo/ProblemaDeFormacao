@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PVector;
 
 public class Main extends PApplet{
 
@@ -7,7 +8,8 @@ public class Main extends PApplet{
 		PApplet.main("Main");
 	}	
 	
-	Simulador simulador;
+	//Simulador simulador;
+	Vehicle vehicle;
 	float squareX = 250;
 	float squareY = 200;	
 	
@@ -15,8 +17,9 @@ public class Main extends PApplet{
 	
 	public void settings(){
 		 size(700,500);	
-		 simulador = new Simulador(this);
-		 simulador.agentInstantiate(nrAgentes);
+		 //simulador = new Simulador(this);
+		 //simulador.agentInstantiate(nrAgentes);
+		 vehicle = new Vehicle(50,50, this);
 	}
 	
 	public void setup(){
@@ -26,12 +29,17 @@ public class Main extends PApplet{
 	public void draw(){
 		background(255);			
 		mousePose();
-		simulador.runAgents(squareX,squareY);
+		//simulador.runAgents(squareX,squareY);
+		vehicle.update();
+		vehicle.seek(new PVector(mouseX, mouseY), 200);
+		vehicle.display();
 		noFill();	
 		squareX = mouseX;
 		squareY = mouseY;
 	}	
+	
 	public void mousePose(){
 		rect(mouseX, mouseY, 150,150);
-	}    
+	}  	
+	
 }
