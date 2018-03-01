@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
@@ -10,6 +11,7 @@ public class Simulador {
 	PApplet p;
 	private ArrayList<PerceptionAgente> posicoes;
 	private ArrayList<Agente>agentes;
+	private ArrayList<Vehicle>vehicles;
 	private float range = 100;
 	
 	public Simulador(PApplet p, ArrayList<PerceptionAgente> posicoes) {
@@ -21,6 +23,7 @@ public class Simulador {
 	public Simulador(PApplet p){
 		this.p = p;
 		agentes = new ArrayList<Agente>();
+		vehicles = new ArrayList<Vehicle>();
 	}
 	
 	public void agentInstantiate(int numberOfAgents){
@@ -28,6 +31,21 @@ public class Simulador {
 			Agente a = new Agente(p, this);
 			a.setNumber(i);
 			agentes.add(a);
+		}
+	}
+	
+	public void vehicleInstantiate(int number){
+		for(int i=0;i<number;i++){
+			Vehicle v = new Vehicle(p.random(700), p.random(500), p);
+			vehicles.add(v);
+		}
+	}
+	
+	public void runAgents(PVector target){
+		for(Vehicle v:vehicles){
+			v.update();
+			v.seek(target, 100);
+			v.display();
 		}
 	}
 	
