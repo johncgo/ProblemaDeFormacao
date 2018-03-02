@@ -1,6 +1,8 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import javax.sound.sampled.FloatControl;
+
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -44,9 +46,10 @@ public class Simulador {
 	public void runAgents(PVector target){
 		for(Vehicle v:vehicles){
 			v.update();
-			v.separate(vehicles);
-			v.seek(target, 100);
+			v.flock(vehicles); 
+			v.applyBehaviors(vehicles, target.x, target.y);
 			v.display();
+			
 		}
 	}
 	

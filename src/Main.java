@@ -19,7 +19,7 @@ public class Main extends PApplet{
 		 size(700,500);	
 		 simulador = new Simulador(this);
 		 //simulador.agentInstantiate(nrAgentes);
-		 simulador.vehicleInstantiate(10);
+		 simulador.vehicleInstantiate(50);
 		 vehicle = new Vehicle(50,50, this);
 	}
 	
@@ -41,7 +41,7 @@ public class Main extends PApplet{
 	}	
 	
 	public void mousePose(){
-		rect(mouseX, mouseY, 150,150);
+		rect(mouseX-75, mouseY-75, 150,150);
 	}  	
 	
 }

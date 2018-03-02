@@ -19,8 +19,8 @@ public class Vehicle {
 	    velocity = new PVector(0,0);
 	    location = new PVector(x,y);
 	    r = (float) 3.0;
-	    maxspeed = 5;
-	    maxforce = (float) 0.1;
+	    maxspeed = 4;
+	    maxforce = 0.09f;
 	    this.p = p;
 	}
 	
@@ -35,8 +35,21 @@ public class Vehicle {
 	    acceleration.add(force);
 	}
 	
+	void applyBehaviors(ArrayList<Vehicle> vehicles, float x, float y) {
+		  PVector separate = separate(vehicles);
+		  PVector seek = seek(new PVector(x,y));
+		 
+		  separate.mult(1.5f);
+		  seek.mult(0.5f);
+		 
+		 
+		  applyForce(separate);
+		  applyForce(seek);
+		}
+	
+	
 	PVector separate (ArrayList<Vehicle> vehicles) {
-		    float desiredseparation = r*2;
+		    float desiredseparation = r*6;
 		    PVector sum = new PVector();
 		    int count = 0;
 		    for (Vehicle other : vehicles) {
@@ -83,6 +96,17 @@ public class Vehicle {
 		return steer;
 	}
 	
+	
+	PVector seek(PVector target) {
+	    PVector desired = PVector.sub(target,location);
+	    desired.normalize();
+	    desired.mult(maxspeed);
+	    PVector steer = PVector.sub(desired,velocity);
+	    steer.limit(maxforce);
+	 
+	    //applyForce(steer);
+	    return steer;
+	  }
 	PVector align (ArrayList<Vehicle> boids) {
 		    float neighbordist = 50;
 		    PVector sum = new PVector(0,0);
