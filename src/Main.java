@@ -13,13 +13,12 @@ public class Main extends PApplet{
 	float squareX = 250;
 	float squareY = 200;	
 	
-	int nrAgentes = 50;
+	int nrAgentes = 25;
 	
 	public void settings(){
 		 size(700,500);	
-		 simulador = new Simulador(this);
-		 //simulador.agentInstantiate(nrAgentes);
-		 simulador.vehicleInstantiate(50);
+		 simulador = new Simulador(this);		 
+		 simulador.vehicleInstantiate(nrAgentes);
 		 vehicle = new Vehicle(50,50, this);
 	}
 	
@@ -30,11 +29,7 @@ public class Main extends PApplet{
 	public void draw(){
 		background(255);			
 		mousePose();
-		simulador.runAgents(new PVector(mouseX, mouseY));
-		//simulador.runAgents(squareX,squareY);
-//		vehicle.update();
-//		vehicle.seek(new PVector(mouseX, mouseY), 200);
-//		vehicle.display();
+		simulador.runAgents(new PVector(mouseX, mouseY));		
 		noFill();	
 		squareX = mouseX;
 		squareY = mouseY;
